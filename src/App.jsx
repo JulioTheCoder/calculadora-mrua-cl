@@ -5,17 +5,15 @@ import Suggestions from './components/Suggestions'
 import Answer from './components/Answer'
 
 function App() {
-  const [aceleracion,setAceleracion] = useState(0)
-  const [velocidadI,setVelocidadI] = useState(0)
-  const [velocidadF,setVelocidadF] = useState(0)
-  const [posicionI,setPosicionI] = useState(0)
-  const [posicionF,setPosicionF] = useState(0)
-  const [time, setTime] = useState(0)
+  const [distancia,setDistancia] = useState(0)
+  const [min, setMin] = useState(0)
+  const [seg, setSeg] = useState(0)
+  const [miliSeg, setMiliSeg] = useState(0)
   const [estadoI, setEstadoI] = useState(false)
   const [res, setRes] = useState("");
   const [msg, setMsg] = useState("");
 
-  function calcAceleracion() {
+  /* function calcAceleracion() {
     let a;
 
     a= (velocidadF - velocidadI)/time;
@@ -63,27 +61,39 @@ function App() {
     t= (velocidadF - velocidadI)/ aceleracion
     setMsg("Tiempo");
     setRes(t);
+  } */
+
+  function calc() {
+    let time=0;
+
+    if (min>0) {
+      time= time + (min * 60);
+    }else if (seg>0) {
+      time = time + seg;
+    }else if (miliSeg > 0) {
+      time = time + (miliSeg/1000)
+    }
+
+    setRes(distancia/time)
+    setMsg("m/s")
   }
+
   return (
     <div className='flex flex-col items-center '>
     <h1 className="text-teal-950 font-bold underline text-2xl mt-3">Calculadora MRUA</h1>
       <Form
-        aceleracion={aceleracion}
-        setAceleracion={setAceleracion}
-        velocidadI={velocidadI}
-        setVelocidadI={setVelocidadI}
-        velocidadF={velocidadF}
-        setVelocidadF={setVelocidadF}
-        posicionI={posicionI}
-        setPosicionI={setPosicionI}
-        posicionF={posicionF}
-        setPosicionF={setPosicionF}
-        time={time}
-        setTime={setTime}
-        estadoI={estadoI}
-        setEstadoI={setEstadoI}
+      calc={calc}
+        distancia={distancia}
+        setDistancia={setDistancia}
+        min={min}
+        setMin={setMin}
+        seg={seg}
+        setSeg={setSeg}
+        miliSeg={miliSeg}
+        setMiliSeg={setMiliSeg}
+
       />
-      <Suggestions 
+      {/* <Suggestions 
         calcAceleracion={calcAceleracion}
         calcPosicionI={calcPosicionI}
         calcPosicionF={calcPosicionF}
@@ -97,7 +107,7 @@ function App() {
         posicionF={posicionF}
         time={time}
         estadoI={estadoI}
-      />
+      /> */}
       
       <Answer msg={msg} res={res}/>
 
