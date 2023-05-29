@@ -1,4 +1,4 @@
-
+//Este componente despliega el formulario con el que se piden los datos necesarios para cálcular
 
 export default function Form({estadoI, setEstadoI,aceleracion,setAceleracion,velocidadI,setVelocidadI,velocidadF,setVelocidadF,posicionI,setPosicionI,posicionF,setPosicionF,time, setTime}) {
   return(

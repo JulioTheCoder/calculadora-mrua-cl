@@ -5,6 +5,7 @@ import Suggestions from './components/Suggestions'
 import Answer from './components/Answer'
 
 function App() {
+  //Estados inicializados con los que funciona el proyecto
   const [aceleracion,setAceleracion] = useState()
   const [velocidadI,setVelocidadI] = useState()
   const [velocidadF,setVelocidadF] = useState()
@@ -14,129 +15,139 @@ function App() {
   const [estadoI, setEstadoI] = useState(false)
   const [res, setRes] = useState("");
   const [msg, setMsg] = useState("");
+//---------------------------------------------------------------
 
-  function calcVelocidadF() {
-    let vf;
+  //Funciones que hacen los calculos necesarios
+    //Velocidad final
+    function calcVelocidadF() {
+      let vf;
 
-    vf=(velocidadI)+(aceleracion*time)
-    setMsg("Velocidad final =");
-    setRes(vf);
-  }
+      vf=(velocidadI)+(aceleracion*time)
+      setMsg("Velocidad final =");
+      setRes(vf);
+    }
 
-  function calcVelocidadF2() {
-    let vf;
-    vf=(velocidadI**2)+ (2*aceleracion)*(posicionF-posicionI);
-    vf= Math.abs(vf)
-    vf= Math.sqrt(vf);
-    setMsg("Velocidad final =");
-    setRes(vf);
-  }
+    function calcVelocidadF2() {
+      let vf;
+      vf=(velocidadI**2)+ (2*aceleracion)*(posicionF-posicionI);
+      vf= Math.abs(vf)
+      vf= Math.sqrt(vf);
+      setMsg("Velocidad final =");
+      setRes(vf);
+    }
+    //--------------------------------------------------------
+    //Velocidad inicial
+    function calcVelocidadI() {
+      let vi;
 
-  function calcVelocidadI() {
-    let vi;
+      vi=(posicionF-posicionI)/time;
+      vi=Math.abs(vi)
+      setMsg("Velocidad inicial =");
+      setRes(vi);
+    }
 
-    vi=(posicionF-posicionI)/time;
-    vi=Math.abs(vi)
-    setMsg("Velocidad inicial =");
-    setRes(vi);
-  }
+    function calcVelocidadI2() {
+      let vi;
 
-  function calcVelocidadI2() {
-    let vi;
+      vi=(velocidadF)-(aceleracion*time)
+      vi=Math.abs(vi)
+      setMsg("Velocidad inicial =");
+      setRes(vi);
+    }
 
-    vi=(velocidadF)-(aceleracion*time)
-    vi=Math.abs(vi)
-    setMsg("Velocidad inicial =");
-    setRes(vi);
-  }
+    function calcVelocidadI3() {
+      let vi;
 
-  function calcVelocidadI3() {
-    let vi;
+      vi=(velocidadF**2)-(2*aceleracion)*(posicionF-posicionI)
+      vi=Math.abs(vi)
+      vi=Math.sqrt(vi)
+      setMsg("Velocidad inicial =");
+      setRes(vi);
+    }
+    //------------------------------------------------------------------
 
-    vi=(velocidadF**2)-(2*aceleracion)*(posicionF-posicionI)
-    vi=Math.abs(vi)
-    vi=Math.sqrt(vi)
-    setMsg("Velocidad inicial =");
-    setRes(vi);
-  }
+    //Aceleración
+    function calcAceleracion() {
+      let a;
 
+      a= (velocidadF - velocidadI)/time;
+      a = Math.abs(a)
+      setMsg("Aceleración =");
+      setRes(a);
+    }
 
+    function calcAceleracion2() {
+      let a;
 
-  function calcAceleracion() {
-    let a;
+      a = ((velocidadF**2) - (velocidadI**2))/(2*(posicionF-posicionI));
+      a = Math.abs(a)
+      setMsg("Aceleración =");
+      setRes(a);
+    }
+    //-------------------------------------------------------------------
 
-    a= (velocidadF - velocidadI)/time;
-    a = Math.abs(a)
-    setMsg("Aceleración =");
-    setRes(a);
-  }
+    //Posición inicial
+    function calcPosicionI() {
+      let xi;
 
-  function calcAceleracion2() {
-    let a;
+      xi= posicionF-(velocidadI*time)-((1/2) * aceleracion * time**2)
+      
+      setMsg("Posición Inicial =");
+      setRes(xi);
+    }
 
-    a = ((velocidadF**2) - (velocidadI**2))/(2*(posicionF-posicionI));
-    a = Math.abs(a)
-    setMsg("Aceleración =");
-    setRes(a);
-  }
+    function calcPosicionI2() {
+      let xi;
 
+      xi= (velocidadF-velocidadI)*time/(2-((1/2)*aceleracion*(time**2)));
+      
+      setMsg("Posición Inicial =");
+      setRes(xi);
+    }
+    //------------------------------------------------------------------------------
 
+    //Posición final
+    function calcPosicionF() {
+      let xf;
 
-  function calcPosicionI() {
-    let xi;
+      xf=posicionI+(velocidadI*time)+((1/2) * aceleracion * (time**2))
 
-    xi= posicionF-(velocidadI*time)-((1/2) * aceleracion * time**2)
-    
-    setMsg("Posición Inicial =");
-    setRes(xi);
-  }
+      setMsg("Posición Final =");
+      setRes(xf);
+    }
 
-  function calcPosicionI2() {
-    let xi;
+    function calcPosicionF2() {
+      let xf;
 
-    xi= (velocidadF-velocidadI)*time/(2-((1/2)*aceleracion*(time**2)));
-    
-    setMsg("Posición Inicial =");
-    setRes(xi);
-  }
+      xf=posicionI+(((velocidadI+velocidadF)/2)*time)
 
-  function calcPosicionF() {
-    let xf;
+      setMsg("Posición Final =");
+      setRes(xf);
+    }
+    //---------------------------------------------------------------------------
 
-    xf=posicionI+(velocidadI*time)+((1/2) * aceleracion * (time**2))
+    //Tiempo
+    function calcTime() {
+      let t;
 
-    setMsg("Posición Final =");
-    setRes(xf);
-  }
+      t= (velocidadF - velocidadI)/ aceleracion
+      t=Math.abs(t);
+      setMsg("Tiempo =");
+      setRes(t);
+    }
 
-  function calcPosicionF2() {
-    let xf;
+    function calcTime2() {
+      let t;
 
-    xf=posicionI+(((velocidadI+velocidadF)/2)*time)
+      t= (2*(posicionF-posicionI))/(velocidadF + velocidadI)
+      t=Math.abs(t);
+      setMsg("Tiempo =");
+      setRes(t);
+    }
+    //--------------------------------------------------------------------------
+  //-----------------------------------------------------------------------------------------------
 
-    setMsg("Posición Final =");
-    setRes(xf);
-  }
-
-  function calcTime() {
-    let t;
-
-    t= (velocidadF - velocidadI)/ aceleracion
-    t=Math.abs(t);
-    setMsg("Tiempo =");
-    setRes(t);
-  }
-
-  function calcTime2() {
-    let t;
-
-    t= (2*(posicionF-posicionI))/(velocidadF + velocidadI)
-    t=Math.abs(t);
-    setMsg("Tiempo =");
-    setRes(t);
-  }
-
-
+  //Componentes que se visualizarán con sus respectivos parámetros
 
   return (
     <div className='flex flex-col items-center '>
@@ -185,5 +196,5 @@ function App() {
     </div>
   )
 }
-
+//-------------------------------------------------------------------------------------
 export default App

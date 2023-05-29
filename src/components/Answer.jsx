@@ -1,5 +1,5 @@
 
-
+//Este componente Muestras las respuestas de los cálculos efectuados
 export default function Answer({msg, res}) {
   return(
     <div className="flex flex-col">

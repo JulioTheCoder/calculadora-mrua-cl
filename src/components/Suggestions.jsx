@@ -1,4 +1,4 @@
-
+//Este comonente se encarga de mostrar las sugerencias de los cálculos que se pueden efectuar dependiendo de los datos ingresados
 
 export default function Suggestions({calcAceleracion,calcAceleracion2,calcPosicionI,calcPosicionI2,calcPosicionF,calcPosicionF2,calcVelocidadI,calcVelocidadI2,calcVelocidadF, calcVelocidadF2,calcTime,calcTime2,velocidadI, aceleracion, velocidadF, posicionI, posicionF, time, estadoI }) {
   return(
